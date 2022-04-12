@@ -4,31 +4,29 @@ const searchInput = document.querySelector('[data-search]');
 
 let lists = [];
 
-// searchInput.addEventListener('input', e => {
-// 	const value = e.target.value.toLowerCase();
-// 	lists.forEach(list => {
-// 		const isVisible =
-// 			list.name.toLowerCase().includes(value) ||
-// 			list.plantOwner.toLowerCase().includes(value);
-// 		list.element.classList.toggle('hide', !isVisible);
-// 	});
-// });
+searchInput.addEventListener('input', e => {
+	const value = e.target.value.toLowerCase();
+	lists.forEach(list => {
+		const isVisible =
+			list.listName.toLowerCase().includes(value) ||
+			list.listOwner.toLowerCase().includes(value);
+		list.element.classList.toggle('hide', !isVisible);
+	});
+});
 
 
 fetch('/all')
 	.then(res => res.json())
 	.then(data => {
 		lists = data.map(list => {
-			const card = listCardTemplate.content.cloneNode(true).children[0];// Clones data-plant-templates child element <starts with index 0>
-			const image = card.querySelector('[data-image]');
+			const card = listCardTemplate.content.cloneNode(true).children[0];// Clones data-plant-templates child element <starts with index 0>			
 			const header = card.querySelector('[data-header]');
-			const body = card.querySelector('[data-body]');
-			const link = card.querySelector('[data-link]');
-			image.innerHTML = `<img src="${list.image}", alt="", width= "350px", height= "450px">`
-			header.textContent = list.name;
-			body.textContent = list.plantOwner;
-			link.innerHTML = `<a href=/plants/modify/${list.id}>Edit Plant</a>`;
-			plantCardContainer.append(card);
-			return { name: list.name, listOwner: list.listOwner, element: card };
+			const image = card.querySelector('[data-image]');
+			const link = card.querySelector('[data-link]');			
+			header.textContent = list.listName;
+			image.innerHTML = `<img src="${list.image}", alt="", width= "150px", height= "150px">`
+			link.innerHTML = `<a href=/lists/${list.id}>View</a>`;
+			listCardContainer.append(card);
+			return { listName: list.listName, image: list.image, element: card };
 		});
 	});

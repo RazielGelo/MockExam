@@ -2,6 +2,12 @@ extends layout
 
 block content
 	h1 Lists
+	div(class="user-cards", data-list-cards-container)
+	template(data-list-template)
+		div(class="card")
+		div(class="header", data-header)
+		div(class="image", data-image)
+		div(class="link", data-link)
 	div(class="user-cards")
 		div(class="card")
 			div(class="header")
