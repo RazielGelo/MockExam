@@ -1,0 +1,26 @@
+/* Errors */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    display: inline
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    display: inline
+}
+
+.alert-unhandled {
+    color: #a94442;
+    border-color: #d6e9c6;
+}
+

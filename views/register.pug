@@ -1,0 +1,21 @@
+extends layout 
+
+block content
+	div
+		form(action="/register", method="post")
+			p(class="fieldsettitle") Register
+			div
+				label(for="username") What is your username?
+				br
+				input(type="text", name="username", placeholder="username")
+			div 
+				label(for="password") Silently type in your password?
+				br
+				input(type="password", name="password", placeholder="password")
+			div 
+				label(for="confirm_password") Silently type in your password again?
+				br
+				input(type="password", name="confirm_password", placeholder="confirm password")
+			div
+				<p class="p-fieldset">Already registered? <a href="/" title="Sign in."><b>Sign in.</b></a></p>
+			button(type="submit", class="buttonlogin") Sign Up

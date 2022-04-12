@@ -1,0 +1,17 @@
+extends layout 
+
+block content
+	div
+		form(action="/", method="post")
+			p(class="fieldsettitle") LOG IN
+			div
+				label(for="username") What is your username?
+				br
+				input(type="text", name="username", placeholder="username")
+			div 
+				label(for="username") Silently type in your password?
+				br
+				input(type="password", name="password", placeholder="password")
+			div
+				<p class="p-fieldset">Don't have an account. <a href="/register" title="Create One."><b>Create one.</b></a></p>
+			button(type="submit", class="buttonlogin") Login

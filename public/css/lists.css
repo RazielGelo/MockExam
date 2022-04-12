@@ -1,0 +1,70 @@
+.search-wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	min-width: 60%;
+	width: 40%;
+	right: 10px;
+	background: #CFDFFF;
+	border: 1px solid #CFDFFF;
+	box-sizing: border-box;
+	border-radius: 30px;
+	float: right;
+	margin-bottom: 10px;
+  }
+  
+  input {
+	font-size: 1rem;
+  }
+  
+  .user-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: .25rem;
+	margin-top: 1rem;
+
+  }
+  
+  .card {
+	border: 1px solid rgb(197, 191, 191);
+	background-color: rgb(255, 255, 255);
+	padding: .5px;
+/* To remove animation from cards */
+	width: 130px;
+	height: 110px;
+	border-radius: 1rem;
+	border: #ffffff 1px solid;
+	transition: all 0.4s ease-in;
+	box-shadow: 0.4rem 0.4rem 0.6rem #7f7f81;
+	margin-top: 1rem;
+	
+/* To remove animation from cards */
+  }
+/* To remove animation from cards */
+  .card:hover {
+	transform: translateY(-1.5rem);
+	border: #fffffff0 0.2em solid;
+	border-radius: 0 1.5rem 0 1.5rem;
+   }
+/* To remove animation from cards */
+  .card > .header {
+	margin-bottom: .25rem;
+	color: black;
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	height: 31px;
+  }
+  
+  .card > .body {
+	font-size: .8rem;
+	color: rgb(0, 6, 56);
+  }
+
+  .card > .link {
+	font-size: .8rem;
+	color: #777;
+  }
+  
+  .hide {
+	display: none;
+  }

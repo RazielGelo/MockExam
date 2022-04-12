@@ -1,0 +1,20 @@
+extends layout 
+
+block content
+	h1 Create a List
+	div
+		form(action="/createlist", method="post")
+			p(class="fieldsettitle") Create a List
+			div
+				label(for="list_name") What is the name of the list?
+				br
+				input(type="text", name="list_name", placeholder="List Name")
+			div 
+				label(for="image") What display picture would you like to use?
+				br
+				input(type="file", name="image")
+			div 
+				label(for="list_members") Who is going to be on the list?
+				br
+				input(type="text", name="list_members", placeholder="List Members")
+			button(type="submit", class="buttonlogin") Create
