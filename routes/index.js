@@ -36,6 +36,19 @@ router.get('/createlist', ensureAuthenticated, async (req, res) => {
 });
 
 
+/*---API Routes---*/
+
+// Render all plants API returning JSON data
+router.get('/all', async (req, res) => {
+    const lists = await prisma.list.findMany({
+		where: {
+			listOwner: req.session.user.username
+		}
+	});
+    res.json(lists);
+});
+
+
 /*---POST Routes---*/
 
 // Register POST
@@ -113,7 +126,8 @@ router.post('/createlist', ensureAuthenticated, async (req, res) => {
 	const secretSanta = list_members.split(",").map(function (value) {
 		return value.trim();
 	});
-	console.log(secretSanta)
+	
+	const copySecretSanta = [].concat(secretSanta)
 
 	const hasDuplicates = (arr) => {
 		return new Set(arr).size !== arr.length;
@@ -129,8 +143,9 @@ router.post('/createlist', ensureAuthenticated, async (req, res) => {
 		}
 		return items;
 	  }	
-	const randomNames = shuffle(secretSanta)	
-	console.log(randomNames)
+	shuffle(copySecretSanta)
+	console.log(secretSanta)
+	console.log(copySecretSanta)
 
 	try {
 		if (hasDuplicates(secretSanta)) {
@@ -141,7 +156,7 @@ router.post('/createlist', ensureAuthenticated, async (req, res) => {
 				data: {
 					listName: list_name,
 					secretSanta: secretSanta,
-					recipients: randomNames,
+					recipients: copySecretSanta,
 					owner: {
 						connect: {
 							username: req.session.user.username
@@ -152,11 +167,14 @@ router.post('/createlist', ensureAuthenticated, async (req, res) => {
 				}
 		
 			})
-			res.render('lists.pug')
+			res.render('lists.pug', {
+				message: "Successfully created list",
+				user: req.session.user
+			})
 		}	
 
 	} catch (error) {
-		res.render('login.pug', {
+		res.render('create_list.pug', {
             errors: error.message,			
             user: req.session.user
         })
@@ -183,7 +201,7 @@ router.get('/logout', (req, res) => {
         }
 
     } catch (error) {
-        res.render('create_list.pug', {
+        res.render('login.pug', {
             errors: error.message
         })
     }
