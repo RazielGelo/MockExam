@@ -35,11 +35,34 @@ router.get('/createlist', ensureAuthenticated, async (req, res) => {
     res.render('create_list.pug');
 });
 
+// Render Lists page
+router.get('/lists/:id', ensureAuthenticated, async (req, res) => {
+	const list = await prisma.list.findUnique({
+		where: {
+			id: parseInt(req.params.id)
+		}
+	});	       
+    res.render('view_list.pug', {
+		list: list,
+		user: req.session.user
+	});
+});
+
 
 /*---API Routes---*/
 
-// Render all plants API returning JSON data
-router.get('/all', async (req, res) => {
+// Render all lists API returning JSON data
+router.get('/userlist/:id', ensureAuthenticated, async (req, res) => {
+    const list = await prisma.list.findUnique({
+		where: {
+			id: parseInt(req.params.id)
+		}
+	});        
+    res.json(list);
+});
+
+// Render specific lists API returning JSON data
+router.get('/all', ensureAuthenticated, async (req, res) => {
     const lists = await prisma.list.findMany({
 		where: {
 			listOwner: req.session.user.username
@@ -47,6 +70,7 @@ router.get('/all', async (req, res) => {
 	});
     res.json(lists);
 });
+
 
 
 /*---POST Routes---*/
@@ -180,6 +204,18 @@ router.post('/createlist', ensureAuthenticated, async (req, res) => {
         })
 	}
 });
+
+// Delete list
+router.delete('/delete/:id', ensureAuthenticated, async (req, res) => {
+    await prisma.list.delete({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    });
+    res.render('lists.pug', {
+        message: 'List deleted successfully'
+    })
+})
 
 // Logout
 router.get('/logout', (req, res) => {

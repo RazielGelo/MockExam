@@ -2,19 +2,24 @@ extends layout
 
 block content
 	h1 Lists
-	div(class="user-cards", data-list-cards-container)
-	template(data-list-template)
-		div(class="card")
-		div(class="header", data-header)
-		div(class="image", data-image)
-		div(class="link", data-link)
-	div(class="user-cards")
-		div(class="card")
-			div(class="header")
-				h3 Add New List
-			div(class="image")
-				a(href='/createlist')
-					img(src=`/images/default.png`, alt="", width= "150px", height= "150px")
-			div(class="link")
-				a(href='/createlist') Create	
-	script(src='/javascript/display_lists.js')
+	div
+		div(class="user-cards", data-list-cards-container)
+			template(data-list-template)
+				div(class="card")
+					div(class="header", data-header)
+					div(class="image", data-image)
+					div(class="link", data-link)
+			div
+				div(class="card")
+					div(class="header")
+						h3 Add New List
+					div(class="image")
+						a(href='/createlist')
+							img(src=`/images/default.png`, alt="", width= "150px", height= "150px")
+					div(class="link")
+						a(href='/createlist') Create
+		script(src='/javascript/display_lists.js')
+	
+	
+	
+	

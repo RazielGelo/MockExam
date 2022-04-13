@@ -1,0 +1,29 @@
+extends layout 
+
+block content
+	h1=list.listName
+	div
+		-
+			const secretSanta = list.secretSanta
+			const copySecretSanta = [].concat(secretSanta)
+			const shuffle = (items) => {
+			for(var i = items.length; i-- > 1; ) {
+				var j = Math.floor(Math.random() * i);
+				var tmp = items[i];
+				items[i] = items[j];
+				items[j] = tmp;
+				}
+				return items;
+			}
+			const shuffledNames = shuffle(copySecretSanta)
+			const result = shuffledNames.reduce(function (result, field, index) {
+				result[secretSanta[index]] = field;
+				return result;
+			},{})
+	ul
+		each val, key in result
+			li= key + '---------> ' + val
+	a(href='#', id=`delete`, data-id=`${list.id}`) Delete
+	script(src='/javascript/delete_list.js')
+	
+	

@@ -20,7 +20,7 @@
   .user-cards {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	gap: .25rem;
+	gap: 6rem;
 	margin-top: 1rem;
 
   }
@@ -30,8 +30,8 @@
 	background-color: rgb(255, 255, 255);
 	padding: .5px;
 /* To remove animation from cards */
-	width: 130px;
-	height: 110px;
+	width: 250px;
+	height: 278px;
 	border-radius: 1rem;
 	border: #ffffff 1px solid;
 	transition: all 0.4s ease-in;
@@ -60,10 +60,17 @@
 	color: rgb(0, 6, 56);
   }
 
+  .card > .image {
+	  text-align: center;
+  }
+
   .card > .link {
 	font-size: .8rem;
 	color: #777;
+	text-align: center;
   }
+
+
   
   .hide {
 	display: none;
